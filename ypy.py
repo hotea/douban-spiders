@@ -63,10 +63,8 @@ def download_photo():
             current += 1
             
             print('正在下载此相册的{}张照片'.format(len(photo_url)))
-            for photo in enumerate(photo_url):
-                #req.urlretrieve(photo, album_path +'/' + os.path.basename(photo))
-                #print('正在下载此相册的第{}张照片'.format(i+1))
-                pass
+            for photo in photo_url:
+                req.urlretrieve(photo, album_path +'/' + os.path.basename(photo))
             print('-' * 50)
 
 
