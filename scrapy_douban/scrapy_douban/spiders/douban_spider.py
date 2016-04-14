@@ -12,8 +12,6 @@ class DoubanSpider(Spider):
     allowed_domains = ['douban.com']
     start_urls = ['http://www.douban.com/']
 
-    def __init__(self):
-        self.seen = set()
 
     def parse(self, response):
         sel = Selector(response)
@@ -25,9 +23,6 @@ class DoubanSpider(Spider):
             if url:
                 if not url.startswith('http'):
                     url = response.url + url
-                if url in self.seen:
-                    continue
-                self.seen.add(url)
                 yield Request(url, callback=self.parse)
                 item['link'] = url
 
@@ -36,8 +31,8 @@ class DoubanSpider(Spider):
                     item['link_text'] = str(url_text[0].encode('utf-8').strip())
                 else:
                     item['link_text'] = None
-                print item['link'],
-                print item['link_text']
+               # print item['link'],
+               # print item['link_text']
                 yield item
 
 
