@@ -31,8 +31,8 @@ class DoubanSpider(Spider):
                     item['link_text'] = str(url_text[0].encode('utf-8').strip())
                 else:
                     item['link_text'] = None
-               # print item['link'],
-               # print item['link_text']
+                print item['link'],
+                print item['link_text']
                 yield item
 
 

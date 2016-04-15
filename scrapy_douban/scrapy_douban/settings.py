@@ -16,10 +16,10 @@ NEWSPIDER_MODULE = 'scrapy_douban.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36"
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS=100
+CONCURRENT_REQUESTS=10
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -30,15 +30,20 @@ DOWNLOAD_DELAY=1
 #CONCURRENT_REQUESTS_PER_IP=16
 
 # Disable cookies (enabled by default)
-COOKIES_ENABLED=False
+#COOKIES_ENABLED=False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED=False
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
+#   "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", 
+#   "Accept-Encoding": "gzip, deflate, sdch", 
+#   "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4", 
+#   "Host": "http://www.douban.com", 
+#   "Referer": "http://www.google.com", 
+#   "Upgrade-Insecure-Requests": "1", 
+#   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36"
 #}
 
 # Enable or disable spider middlewares
@@ -63,6 +68,7 @@ COOKIES_ENABLED=False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'scrapy_douban.pipelines.DoubanPipeline': 300,
+    'scrapy_douban.pipelines.MongoPipeline':400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -83,8 +89,13 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
-LOG_LEVEL = 'ERROR'
+LOG_LEVEL = 'DEBUG'
 #DEPTH_LIMIT = 1
-RETRY_ENABLED = False
+#RETRY_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
 #REDIRECT_ENABLED = False
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+MONGO_DB = 'douban_mongo'
+MONGO_COLLECTION = 'douban_url'
+
