@@ -69,6 +69,7 @@ DOWNLOAD_DELAY=1
 ITEM_PIPELINES = {
     'scrapy_douban.pipelines.DoubanPipeline': 300,
     'scrapy_douban.pipelines.MongoPipeline':400,
+    'scrapy_douban.pipelines.XmlExportPipeline':500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
